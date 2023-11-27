@@ -1,0 +1,131 @@
+$color_1: ghostwhite;
+$color_2: rgb(64, 73, 199);
+$font-family_1: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+$background-color_1: ghostwhite;
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: $font-family_1;
+}
+body {
+	min-height: 100vh;
+	background: #222;
+}
+.nav {
+	position: relative;
+	left: 250px;
+	top: 100px;
+	width: 250px;
+	z-index: 1;
+	a {
+		display: block;
+		color: $color_1;
+		text-decoration: none;
+		font-size: 1.5em;
+		width: 100%;
+		padding: 10px 24px;
+		&:hover {
+			background-color: $background-color_1;
+			filter: opacity(1);
+			color: $color_2;
+			transition: 0.3s;
+			border-bottom: 1px dashed black;
+		}
+	}
+}
+.toggle {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 50px;
+	background: ghostwhite;
+	cursor: pointer;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 1.5em;
+	padding: 4px 14px;
+	&::before {
+		content: "Menu";
+		margin-right: 10px;
+	}
+	span {
+		position: relative;
+		width: 20px;
+		height: 50px;
+		background: ghostwhite;
+		&::before {
+			content: '';
+			position: absolute;
+			top: 20px;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background: #222;
+			transition: 0.2s;
+		}
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 20px;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background: #222;
+			transition: 0.2s;
+		}
+	}
+}
+.toggle.active {
+	&::before {
+		content: "Close";
+	}
+	span {
+		&::before {
+			transform: rotate(225deg);
+			top: 24px;
+		}
+		&::after {
+			transform: rotate(135deg);
+			bottom: 24px;
+		}
+	}
+}
+a {
+	&:hover {
+		&::before {
+			content: '»';
+			position: absolute;
+			left: 4px;
+		}
+	}
+}
+ul {
+	position: relative;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	li {
+		position: relative;
+		list-style: none;
+		transition: 0.5s;
+		visibility: visible;
+		opacity: 0;
+		transform: translateX(-250px);
+		transition-delay: calc(0.15s * var(--i));
+	}
+}
+.nav.active {
+	ul {
+		li {
+			visibility: visible;
+			opacity: 1;
+			transform: translateX(0px);
+			background: rgb(64, 73, 199);
+		}
+	}
+}
